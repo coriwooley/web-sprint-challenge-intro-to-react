@@ -5,7 +5,7 @@ const Character = props => {
     return (
         <div className='character'>
             {props.info.name}
-            <button onClick={() => props.openDetails(props.id)}>
+            <button onClick={() => props.openDetails(props.info.id)}>
               +  
             </button>
         </div>

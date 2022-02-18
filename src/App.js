@@ -7,7 +7,6 @@ import Details from "./components/Details";
 const App = () => {
   const [starWarsCharacters, setStarWarsCharacters] = useState([]);
   const [swCharacterId, setSwCharacterId] = useState(null);
-  const [error, setError] = useState(null);
 
   const openDetails = (id) => {
     setSwCharacterId(id);
@@ -21,14 +20,13 @@ const App = () => {
     axios
       .get("https://swapi.dev/api/people")
       .then((res) => {
-        setStarWarsCharacters(res.data);
-
-        res.data.map((char, index) => {
-          return setSwCharacterId(index + 1);
-        });
-        console.log(swCharacterId)
+        const characters = res.data
+        characters.forEach((char, index) => {
+          char.id = index + 1
+        })
+        setStarWarsCharacters(characters)
       })
-      .catch((err) => setError(true));
+      .catch((err) => console.log(err));
   }, []);
 
   // Try to think through what state you'll need for this app before starting. Then build out
@@ -41,33 +39,18 @@ const App = () => {
   return (
     <div className="App">
       <h1 className="Header">Characters</h1>
-      {error && <h2>These aren't the droids you are looking for.</h2>}
-      {starWarsCharacters.length > 0 ? (
-        starWarsCharacters.map((char, index) => {
+      { starWarsCharacters.length > 0 ? starWarsCharacters.map((char) => {
           return (
             <Character
               info={char}
-              id={index + 1}
-              key={index + 1}
+              key={char.id}
               openDetails={openDetails}
             />
           );
-        })
-      ) : (
-        <h3>Loading...</h3>
-      )}
-      {starWarsCharacters.map((char, index) => {
-        return (
-          swCharacterId && (
-            <Details
-              id={index + 1}
-              key={index + 1}
-              close={closeDetails}
-              name={char.name}
-            />
-          )
-        );
-      })}
+        }) : <h3>Loading...</h3>}
+        {
+        swCharacterId && <Details id={swCharacterId} close={closeDetails}/>
+}
       )
     </div>
   );
