@@ -3,14 +3,18 @@ import axios from "axios";
 import styled from "styled-components";
 
 const StyledDetails = styled.div`
-width: 60%;
+width: 50%;
 background-color: white;
 padding: 5rem;
 border-radius: 750px;
 font-size: 1.5rem;
 opacity: .7;
+text-align: center;
+margin: auto;
 
 `
+
+
 
 const Details = (props) => {
   const { id, close } = props;
@@ -26,6 +30,7 @@ const Details = (props) => {
   }, [id]);
 
   return (
+      
     <StyledDetails>
       {info && (
         <>
@@ -49,6 +54,7 @@ const Details = (props) => {
 
       <button onClick={close}>Close</button>
     </StyledDetails>
+    
   );
 };
 export default Details;

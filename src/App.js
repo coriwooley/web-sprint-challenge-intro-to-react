@@ -4,6 +4,7 @@ import axios from "axios";
 import Character from "./components/Character";
 import Details from "./components/Details";
 
+
 const App = () => {
   const [starWarsCharacters, setStarWarsCharacters] = useState([]);
   const [swCharacterId, setSwCharacterId] = useState(null);
@@ -36,8 +37,10 @@ const App = () => {
   // side effect in a component, you want to think about which state and/or props it should
   // sync up with, if any.
 
+ 
+
   return (
-    <div className="App">
+    <div className='App'>
       { starWarsCharacters.length > 0 ? starWarsCharacters.map((char) => {
           return (
             <Character
