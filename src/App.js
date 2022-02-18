@@ -38,7 +38,6 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1 className="Header">Characters</h1>
       { starWarsCharacters.length > 0 ? starWarsCharacters.map((char) => {
           return (
             <Character

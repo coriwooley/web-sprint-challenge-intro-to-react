@@ -1,5 +1,16 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import styled from "styled-components";
+
+const StyledDetails = styled.div`
+width: 60%;
+background-color: white;
+padding: 5rem;
+border-radius: 750px;
+font-size: 1.5rem;
+opacity: .7;
+
+`
 
 const Details = (props) => {
   const { id, close } = props;
@@ -15,9 +26,11 @@ const Details = (props) => {
   }, [id]);
 
   return (
-    <div className="infoCard">
+    <StyledDetails>
       {info && (
         <>
+
+          <h2>{info.name}</h2>
           <p>Height: {info.height}</p>
           <p>Mass: {info.mass}</p>
           <p>Hair Color: {info.hair_color}</p>
@@ -34,8 +47,8 @@ const Details = (props) => {
         </>
       )}
 
-      <button onClick={close}></button>
-    </div>
+      <button onClick={close}>Close</button>
+    </StyledDetails>
   );
 };
 export default Details;
