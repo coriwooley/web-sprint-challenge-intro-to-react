@@ -45,7 +45,7 @@ const Details = (props) => {
           <p>Gender: {info.gender}</p>
           <p>
             Homeworld:{" "}
-            <a href="{homeworld}">
+            <a href={info.homeworld}>
               Click here to see where in the Galaxy I'm from!
             </a>
           </p>
